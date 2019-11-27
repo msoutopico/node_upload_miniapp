@@ -3,7 +3,7 @@ var multer = require('multer')
 
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, 'upload/');
+        cb(null, 'uploads/');
      },
     filename: function (req, file, cb) {
         cb(null , file.originalname);
@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
     res.send('hello people 2a')
 })
 
-app.post('/single', upload.single('profile'), (req, res) => {
+app.post('/single', upload.single('batch'), (req, res) => {
     try {
         res.send(req.file);
     } catch(err) {
@@ -27,7 +27,7 @@ app.post('/single', upload.single('profile'), (req, res) => {
     }
 })
 
-app.post('/bulk', upload.array('profiles', 4), (req, res) =>{
+app.post('/bulk', upload.array('batches', 4), (req, res) =>{
     try {
         res.send(req.files)
     } catch(error) {
